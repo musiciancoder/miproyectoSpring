@@ -42,8 +42,10 @@ public class PeliculasController {
 		return "peliculas/listaPeliculas";
 	}
 	
+	//es mejor usar @ModelAttribute y <form:form> en la vista (formPeliculas en nuestro caso) cuando existe una clase de modelo (en nuestro caso la clase Pelicula). Sino, ocupar model.addatribute como en el resto de los metodos aca descritos
 	@GetMapping("/create")
-	public String crear(@ModelAttribute Pelicula pelicula) { // @ModelAttribute se usa para vincular lo que se escribe en los inputs de las vistas (en nuestro caso formPeliculas.jsp) con el modelo a traves de la clase modelo ( en nuestro caso Pelicula)
+	public String crear(@ModelAttribute Pelicula pelicula, Model model) { // @ModelAttribute se usa para vincular lo que se escribe en los inputs de las vistas (en nuestro caso formPeliculas.jsp) con el modelo a traves de la clase modelo ( en nuestro caso Pelicula)
+		model.addAttribute("generos", servicePeliculas.buscarGeneros());//aqui se agrega la lista de generos al modelo. "generos" se llama en la cista con items=generos y  servicePeliculas.buscarGeneros() retorna la lista de generos desde la clase de servicio
 		return "peliculas/formPelicula";
 	}
 	

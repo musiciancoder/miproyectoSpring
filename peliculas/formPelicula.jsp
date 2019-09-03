@@ -43,11 +43,28 @@
 			</div>
 		</spring:hasBindErrors>
 
+${pelicula}
 	   <form:form action="${urlForm}" method="post" enctype="multipart/form-data" modelAttribute="pelicula"> <!-- enctype="multipart/form-data" es para subir archivos -->
+        
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="form-group">
+<!--           renderizar imagen por defecto en el formulario cuando aun no se ha agregado ninguna imagen -->
+               <img class="img-rounded" src="${urlPublic}/images/${pelicula.imagen}" title="Imagen actual de la pelicula" width="150" height="200">
+            </div>  
+          </div>
+         </div>
+        
+        
+        
+        
+        
+        
         <div class="row">
           <div class="col-sm-3">
             <div class="form-group">
               <label for="titulo">Título</label>
+              <form:hidden path="id"/> <!-- tras bambalinas, el usuario no lo ve nunca -->
               <form:input type="text" class="form-control" path="titulo" id="titulo" required="required" />
             </div>  
           </div>
@@ -69,7 +86,12 @@
           </div>
           <div class="col-sm-3">
             <div class="form-group">
-              <label for="genero" class="control-label">Genero</label>              
+              <label for="genero" class="control-label">Genero</label>
+              
+              <!-- path="genero" debe coincidir con la List<String> genero en peliculasController para que se renderice cada elemento de esta lista-->
+               <form:select id="genero" path="genero" class="form-control" items="${generos}"/> <%-- items="${generos}" se manda al metodo crear de PeliculasController --%>
+              
+              <!--              
               <form:select id="genero" path="genero" class="form-control">
                 <option value="Accion">Accion</option>
                 <option value="Aventura">Aventura </option>
@@ -80,7 +102,8 @@
                 <option value="Infantil">Infantil</option>                  
                 <option value="Accion y Aventura">Accion y Aventura</option>                  
                 <option value="Romantica">Romantica</option>                  
-              </form:select>             
+              </form:select> 
+              -->            
             </div> 
           </div>         
         </div>
@@ -105,12 +128,15 @@
           <div class="col-sm-3">
             <div class="form-group">
               <label for="imagen">Imagen</label>
+              <form:hidden path="imagen"/>
               <input type="file" id="archivoImagen" name="archivoImagen" />
               <p class="help-block">Imagen de la pelicula</p>
             </div> 
           </div>
         </div>
-		<!--
+        
+		<!--DETALLE-->
+		
         <div class="page-header">
 					<h3 class="blog-title"><span class="label label-success">Detalles</span></h3>
         </div>
@@ -119,20 +145,20 @@
           <div class="col-sm-3">
             <div class="form-group">
               <label for="director">Director</label>
-              <input type="text" class="form-control" name="director" id="director" required="required" />
+              <form:input type="text" class="form-control" path="detalle.director" id="director" required="required" />
             </div>  
           </div>
           <div class="col-sm-3">
             <div class="form-group">
               <label for="actores">Actores</label>
-              <input type="text" class="form-control" name="actores" id="actores" required="required" />
+              <form:input type="text" class="form-control" path="detalle.actores" id="actores" required="required" />
             </div>  
           </div>
 
           <div class="col-sm-6">
             <div class="form-group">
               <label for="trailer">URL del Trailer (Youtube)</label>
-              <input type="text" class="form-control" name="trailer" id="trailer" placeholder="URL completa del video de YOUTUBE" required="required" />
+              <form:input type="text" class="form-control" path="detalle.trailer" id="trailer" placeholder="URL completa del video de YOUTUBE" required="required" />
             </div>  
           </div> 
         </div> 
@@ -141,11 +167,11 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label for="sinopsis">Sinopsis</label>
-              <textarea class="form-control" rows="5" name="sinopsis" id="sinopsis"></textarea>
+              <form:textarea class="form-control" rows="5" path="detalle.sinopsis" id="sinopsis"></form:textarea>
             </div> 
           </div> 
         </div>
-		-->
+		
         <button type="submit" class="btn btn-danger" >Guardar</button>
       </form:form> 
 

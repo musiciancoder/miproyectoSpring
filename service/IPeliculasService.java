@@ -11,5 +11,7 @@ public interface IPeliculasService {
 	List <Pelicula> buscarTodas (); //metodo1
 	
 	Pelicula buscarPorId(int idPelicula);//metodo2
+	
+	List <String> buscarGeneros();
 
 }
