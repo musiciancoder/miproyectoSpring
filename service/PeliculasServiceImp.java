@@ -2,14 +2,17 @@ package net.itinajero.app.service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import net.itinajero.app.model.Pelicula;
 
-@Service //con esto indicamos que esta es clase de servicio, para que sea posible la inyeccion de dependencias
+//@Service //con esto indicamos que esta es clase de servicio, para que sea posible la inyeccion de dependencias.
 public class PeliculasServiceImp implements IPeliculasService{
 	
 	private List <Pelicula> lista=null;
@@ -124,4 +127,39 @@ Pelicula pelicula5 = new Pelicula();
 		
 	}
 
+	@Override
+	public List <String> buscarGeneros() {
+		
+		// Nota: Esta lista podria ser obtenida de una BD
+		List<String> generos = new LinkedList<>();
+		generos.add("Accion");
+		generos.add("Aventura");
+		generos.add("Clasicas");
+		generos.add("Comedia Romantica");
+		generos.add("Drama");
+		generos.add("Terror");
+		generos.add("Infantil");
+		generos.add("Accion y Aventura");
+		generos.add("Romantica");
+		generos.add("Ciencia Ficcion");
+				
+		return generos;
+	}
+
+	@Override
+	public void eliminar(int idPelicula) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/*@Override
+	public Page<Pelicula> buscarTodas(Pageable page) {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
+	
+
+
 }
+
+
