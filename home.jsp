@@ -113,14 +113,14 @@
               <span class="label label-default">${pelicula.genero}</span>
             </h4>  
                    
-            <%-- 
-            <p><a class="btn btn-sm btn-primary" href="detail/${pelicula.id }/${fechaBusqueda}" role="button">Consulta Horarios &raquo;</a></p> //< href="detail/${pelicula.id }/${fechaBusqueda} es para url dinamica utilizando @PathVariable en el controller
-            --%>
+            
+            <p><a class="btn btn-sm btn-primary" href="${urlRoot}detail/${pelicula.id }/${fechaBusqueda}" role="button">Consulta Horarios &raquo;</a></p> <%--  href="detail/${pelicula.id }/${fechaBusqueda} es para url dinamica utilizando @PathVariable en el controller--%>
+            
           	
-          	<!-- href="detail?idMovie=${pelicula.id }&fecha=${fechaBusqueda}" es para usar hacer link a una url con parametros tipo get, con requestparam en el controller; The key difference between @RequestParam and @PathVariable is that @RequestParam used for accessing the values of the query parameters where as @PathVariable used for accessing the values from the URI template.    --> 
-          	
-          <p><a class="btn btn-sm btn-primary" href="detail?idMovie=${pelicula.id }&fecha=${fechaBusqueda}" role="button">Consulta Horarios &raquo;</a></p> 
-          
+          	<%-- href="detail?idMovie=${pelicula.id }&fecha=${fechaBusqueda}" es para usar hacer link a una url con parametros tipo get, con requestparam en el controller; The key difference between @RequestParam and @PathVariable is that @RequestParam used for accessing the values of the query parameters where as @PathVariable used for accessing the values from the URI template.    --%> 
+          	 <%-- 
+          <p><a class="btn btn-sm btn-primary" href="detail?idMovie=${pelicula.id}&fecha=${fechaBusqueda}" role="button">Consulta Horarios &raquo;</a></p> 
+           --%>
           </div>
           
           </c:forEach>
